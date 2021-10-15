@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   View,
   Text,
@@ -6,18 +6,23 @@ import {
   StyleSheet,
   Platform,
   StatusBar,
-} from "react-native";
-import Categories from "../components/Categories";
-import HeaderTabs from "../components/HeaderTabs";
-import SearchBar from "../components/SearchBar";
+  ScrollView,
+} from 'react-native';
+import Categories from '../components/Categories';
+import HeaderTabs from '../components/HeaderTabs';
+import RestaurantItem from '../components/RestaurantItem';
+import SearchBar from '../components/SearchBar';
 
 export default function Home() {
   return (
-    <SafeAreaView style={[styles.androidSafeArea, {backgroundColor: '#eee'}]}>
-      <View style={{backgroundColor: 'white', padding: 15}}>
+    <SafeAreaView style={[styles.androidSafeArea, { backgroundColor: '#eee' }]}>
+      <View style={{ backgroundColor: 'white', padding: 15 }}>
         <HeaderTabs />
         <SearchBar />
-        <Categories />
+        <ScrollView showsVerticalScrollIndicator={false} style={{marginBottom: Platform.OS === 'android' ? 100 : 0, marginTop: 10}}>
+          <Categories />
+          <RestaurantItem />
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
@@ -26,7 +31,7 @@ export default function Home() {
 const styles = StyleSheet.create({
   androidSafeArea: {
     flex: 1,
-    backgroundColor: "white",
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+    backgroundColor: 'white',
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
   },
 });
