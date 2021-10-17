@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import MaterialCommuityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const localRestaurants = [
+export const localRestaurants = [
   {
     name: 'Beachside Bar',
     image_url: 'https://tinyurl.com/6xtvswea',
@@ -29,17 +29,15 @@ const localRestaurants = [
   },
 ];
 
-const RestaurantItem = () => {
-  return (
-    <TouchableOpacity style={{ marginBottom: 30 }} activeOpacity={0.9}>
-      {localRestaurants.map((restaurant, index) => (
-        <View key={index} style={{ marginTop: 15, backgroundColor: 'white' }}>
-          <RestaurantImage image={restaurant.image_url} />
-          <RestaurantInfo name={restaurant.name} rating={restaurant.rating} />
-        </View>
-      ))}
+const RestaurantItem = ({ restaurantsData }) => {
+  return restaurantsData.map((restaurant, index) => (
+    <TouchableOpacity key={index} style={{ marginBottom: 30 }} activeOpacity={1}>
+      <View style={{ marginTop: 15, backgroundColor: 'white' }}>
+        <RestaurantImage image={restaurant.image_url} />
+        <RestaurantInfo name={restaurant.name} rating={restaurant.rating} />
+      </View>
     </TouchableOpacity>
-  );
+  ));
 };
 
 const RestaurantImage = ({ image }) => {
