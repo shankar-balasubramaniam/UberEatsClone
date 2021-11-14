@@ -8,6 +8,7 @@ import {
   Dimensions,
 } from 'react-native';
 import { Divider } from 'react-native-elements';
+import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
 const deviceHeight = Dimensions.get('window').height;
 
@@ -94,12 +95,20 @@ export default function MenuItems() {
     <View style={{ height: deviceHeight - 281.8 }}>
       <ScrollView style={{ flexGrow: 1 }}>
         {foods.map((food, index) => (
-          <View>
+          <View key={index}>
             <View key={index} style={styles.menuItem}>
+              <BouncyCheckbox
+                fillColor='green'
+                iconStyle={{ borderColor: 'lightgray', borderRadius: 0 }}
+              />
               <FoodInfo food={food} />
               <FoodImage food={food} />
             </View>
-            <Divider width={0.5} orientation="vertical" />
+            <Divider
+              width={0.5}
+              orientation='vertical'
+              style={{ marginHorizontal: 20 }}
+            />
           </View>
         ))}
       </ScrollView>

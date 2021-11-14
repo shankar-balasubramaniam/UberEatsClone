@@ -2,31 +2,21 @@ import React from 'react';
 import { Image } from 'react-native';
 import { View, Text } from 'react-native';
 
-const yelpRestaurantInfo = {
-  name: 'Farmhouse Kitchen Thai Cuisine',
-  image: 'https://tinyurl.com/6xtvswea',
-  price: '$$',
-  reviews: '1500',
-  rating: 4.5,
-  categories: [{ title: 'Thai' }, { title: 'Comfort Food' }],
-};
+export default function About(props) {
+  const { name, image, price, reviews, rating, categories } =
+    props.route.params;
 
-const { name, image, price, reviews, rating, categories } = yelpRestaurantInfo;
+  const formattedCategories = categories.map((cat) => cat.title).join(' - ');
 
-const formattedCategories = categories.map((cat) => cat.title).join(' - ');
-
-const description = `${formattedCategories} ${price ? ' - ' + price : ''} - 🎫 - ${rating} - 🌟 (${reviews}+)`
-
-const title = 'Farmhouse Kitchen Thai Cuisine';
-// const description = 'Thai - Comfort Food - $$ - 🎫 - 4 🌟 (2913+)';
-
-export default function About() {
+  const description = `${formattedCategories} ${
+    price ? ' - ' + price : ''
+  } - 🎫 - ${rating} - 🌟 (${reviews}+)`;
   return (
     <View style={{ height: 280 }}>
       {/* RestaurantImage */}
-      <RestaurantImage image='https://tinyurl.com/6xtvswea' />
+      <RestaurantImage image={image} />
       {/* RestaurantTitle */}
-      <RestaurantName title='Farmhouse Kitchen Thai Cuisine' />
+      <RestaurantName title={name} />
       {/* RestaurantDescription */}
       <RestaurantDescription description={description} />
     </View>

@@ -10,12 +10,14 @@ import {
 } from 'react-native';
 import Categories from '../components/home/Categories';
 import HeaderTabs from '../components/home/HeaderTabs';
-import RestaurantItem, { localRestaurants } from '../components/home/RestaurantItem';
+import RestaurantItem, {
+  localRestaurants,
+} from '../components/home/RestaurantItem';
 import SearchBar from '../components/home/SearchBar';
 import { Divider } from 'react-native-elements';
 import BottomTabs from '../components/home/BottomTabs';
 
-export default function Home() {
+export default function Home({ navigation }) {
   const [restaurantsData, setRestaurantsData] = useState(localRestaurants);
   const [city, setCity] = useState('San Francisco');
   const [activeTab, setActiveTab] = useState('Delivery');
@@ -59,7 +61,10 @@ export default function Home() {
           }}
         >
           <Categories />
-          <RestaurantItem restaurantsData={restaurantsData} />
+          <RestaurantItem
+            restaurantsData={restaurantsData}
+            navigation={navigation}
+          />
         </ScrollView>
         <Divider width={1} />
         <BottomTabs />
